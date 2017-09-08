@@ -1,4 +1,3 @@
-
 import pyodbc
 server = 'hellodoc.database.windows.net'
 database = 'DOCTOR'
