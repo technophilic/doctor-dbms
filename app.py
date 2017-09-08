@@ -1,14 +1,14 @@
-from flask import Flask
-from flask_cors import CORS, cross_origin
-import json
-app= Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/')
-@cross_origin()
-def index():
-    x={'a':'loki','b':'lok'}
-    return json.dumps(x)
-if __name__=="__main__":
-    app.run()
+import pyodbc
+server = 'hellodoc.database.windows.net'
+database = 'DOCTOR'
+username = 'vikrame1999'
+password = 'Viky123!'
+driver= 'SQL Server'
+cnxn = pyodbc.connect('DRIVER='+driver+';PORT=1433;SERVER='+server+';PORT=1443;DATABASE='+database+';UID='+username+';PWD='+ password)
+cursor = cnxn.cursor()
+cursor.execute("select * from Hospital;")
+row = cursor.fetchone()
+while row:
+    print (str(row))
+    row = cursor.fetchone()
